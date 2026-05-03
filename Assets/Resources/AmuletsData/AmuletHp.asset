@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8622d546f610c944b85c8045e8bc41ed, type: 3}
+  m_Name: AmuletHp
+  m_EditorClassIdentifier: Assembly-CSharp::AmuletData
+  itemName: AmuletHP
+  itemIcon: {fileID: 2920698787889111498, guid: 51ac09316b0560f4bac13b71ad251f73, type: 3}
+  description: 
+  bonusDamage: 0
+  bonusHp: 100
+  bonusMp: 0

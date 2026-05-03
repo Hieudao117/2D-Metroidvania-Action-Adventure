@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BaseScene.unity
+    guid: af17f7eb8b77ded4a93a15d828b7e9a7
+  - enabled: 1
+    path: Assets/Scenes/ForestVip.unity
+    guid: 9e74259506f3217499de8f45b19f2f92
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Cave.unity
+    guid: 3f8e95bd0d9ad0244b1c3281d5d817e3
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0

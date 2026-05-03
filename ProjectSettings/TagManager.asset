@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Ledge
+  - Enemy
+  - Trap
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Ground
+  - Ledge
+  - Enemy
+  - Wall
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: AAAfterBAckGroun
+    uniqueID: 833157209
+    locked: 0
+  - name: AAfterBackGround
+    uniqueID: 53713809
+    locked: 0
+  - name: AfterBackground
+    uniqueID: 1109654181
+    locked: 0
+  - name: Mossy
+    uniqueID: 3718656607
+    locked: 0
+  - name: BackGround
+    uniqueID: 436371233
+    locked: 0
+  - name: BeforeBackGround
+    uniqueID: 3338120523
+    locked: 0
+  - name: ForeGround
+    uniqueID: 3729115677
+    locked: 0
+  - name: Ground
+    uniqueID: 1942754183
+    locked: 0
+  - name: OnGround
+    uniqueID: 1148902781
+    locked: 0
+  - name: Wall
+    uniqueID: 1544022077
+    locked: 0
+  - name: Item
+    uniqueID: 4287685195
+    locked: 0
+  - name: Player
+    uniqueID: 223182835
+    locked: 0
+  - name: Skill
+    uniqueID: 682805255
+    locked: 0
+  - name: Enemies
+    uniqueID: 2150030247
+    locked: 0
+  - name: Trap
+    uniqueID: 221265377
+    locked: 0
+  - name: Story
+    uniqueID: 844389625
+    locked: 0
+  - name: Hp
+    uniqueID: 3278189031
+    locked: 0
+  - name: Menu
+    uniqueID: 2342716281
+    locked: 0
+  m_RenderingLayers:
+  - Default
