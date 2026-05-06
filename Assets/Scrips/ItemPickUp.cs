@@ -10,6 +10,7 @@ public class ItemPickUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.Instance.PlayCollectItemClip();
             if (type == ItemType.Coin)
             {
                 ResourceManager.instance.AddCoin(value);

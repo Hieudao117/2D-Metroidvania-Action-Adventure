@@ -44,9 +44,11 @@ public class Dragon : MonoBehaviour
         {
             case 0:
                 animator.SetTrigger("BaseAttack");
+                AudioManager.Instance.PlayDragonBaseAttackClip();
                 break;
             case 1:
                 animator.SetTrigger("SpecialAttack");
+                AudioManager.Instance.PlayDragonSpecialAttackClip();
                 break;
             
         }

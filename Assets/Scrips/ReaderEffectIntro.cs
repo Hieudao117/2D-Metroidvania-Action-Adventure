@@ -26,6 +26,7 @@ public class ReaderEffectIntro : MonoBehaviour
     IEnumerator PlayText()
     {
         textUI.text = "";
+        AudioManager.Instance.PlayTypingKeyBoardClip();
 
         foreach (char c in fullText)
         {
@@ -35,6 +36,7 @@ public class ReaderEffectIntro : MonoBehaviour
 
         // Đợi thêm 2 giây để người chơi đọc xong
         yield return new WaitForSeconds(2f);
+        AudioManager.Instance.StopTypingKeyBoardClip();
 
         GameMenuManager.Instance.StartGame();
         

@@ -12,6 +12,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip spell2Clip;
     [SerializeField] private AudioSource audioSourceStartGame;
     [SerializeField] private AudioClip StartGameClip;
+    [SerializeField] private AudioClip CollectItemClip;
+    [SerializeField] private AudioClip EnemyDetectClip;
+    [SerializeField] private AudioClip EnemyAttackClip;
+    [SerializeField] private AudioClip DragonBaseAttack;
+    [SerializeField] private AudioClip DragonSpecialAttack;
+    [SerializeField] private AudioSource audioSourceTypingKeyBoard;
+    [SerializeField] private AudioClip typingKeyBoardClip;
 
     public static AudioManager Instance;
     private void Awake()
@@ -63,6 +70,35 @@ public class AudioManager : MonoBehaviour
     public void PlaySpell2Clip()
     {
         audioSourceShotClip.PlayOneShot(spell2Clip);
+    }
+    public void PlayCollectItemClip()
+    {
+        audioSourceShotClip.PlayOneShot(CollectItemClip);
+    }
+    public void PlayEnemyDetectClip()
+    {
+        audioSourceShotClip.PlayOneShot(EnemyDetectClip);
+    }
+    public void PlayEnemyAttackClip()
+    {
+        audioSourceShotClip.PlayOneShot(EnemyAttackClip);
+    }
+    public void PlayDragonBaseAttackClip()
+    {
+        audioSourceShotClip.PlayOneShot(DragonBaseAttack);
+    }
+    public void PlayDragonSpecialAttackClip()
+    {
+        audioSourceShotClip.PlayOneShot(DragonSpecialAttack);
+    }
+    public void PlayTypingKeyBoardClip()
+    {
+        audioSourceTypingKeyBoard.clip = typingKeyBoardClip;
+        audioSourceTypingKeyBoard.Play();
+    }
+    public void StopTypingKeyBoardClip()
+    {
+        audioSourceTypingKeyBoard.Stop();
     }
     public void StopOneShot()
     {

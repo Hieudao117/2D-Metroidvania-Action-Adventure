@@ -112,6 +112,7 @@ public abstract class Enemy : MonoBehaviour
         if (isPlayerInTrigger == true)
         {
             currentState = State.Chase;
+            AudioManager.Instance.PlayEnemyDetectClip();
         }
     }
 
@@ -147,6 +148,7 @@ public abstract class Enemy : MonoBehaviour
     {
         FLipWhenAttack(player.transform.position);
         animator.SetBool("isAttack", true);
+        AudioManager.Instance.PlayEnemyAttackClip();
         float distanceToPlayer = Vector2.Distance(player.transform.position,transform.position);
         if(distanceToPlayer > stopDistanceToPlayer )
         {

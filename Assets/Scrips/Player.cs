@@ -389,13 +389,38 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject fireBallPlayer;
     [SerializeField] private Transform fireBallPlayerPoint;
     [SerializeField] private float fireBallPlayerSpeed = 10f;
-    public void SpellAttack1()
+    /*public void SpellAttack1()
     {
         GameObject fbp = Instantiate(fireBallPlayer, fireBallPlayerPoint.position, Quaternion.identity);
         FireBallPlayer fbp1 = fbp.GetComponent<FireBallPlayer>();
         float direction = transform.localScale.x > 0 ? 1 : -1;
         fbp1.SetMovementDirection(new Vector3(direction * fireBallPlayerSpeed, 0, 0));
         fbp1.transform.localScale = new Vector3(direction, 1, 1);
+    }*/
+    public void SpellAttack1()
+    {
+        // 1. Lấy vị trí chuột trong thế giới (World Space)
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Vì game 2D, chúng ta ép Z về 0 để tránh đạn bay lệch vào/ra khỏi màn hình
+        mousePos.z = 0f;
+
+        // 2. Tính toán hướng từ điểm bắn (fireBallPlayerPoint) tới chuột
+        Vector3 direction = (mousePos - fireBallPlayerPoint.position).normalized;
+
+        // 3. Tạo hỏa cầu
+        GameObject fbp = Instantiate(fireBallPlayer, fireBallPlayerPoint.position, Quaternion.identity);
+        FireBallPlayer fbp1 = fbp.GetComponent<FireBallPlayer>();
+
+        // 4. Truyền vận tốc (hướng * tốc độ)
+        if (fbp1 != null)
+        {
+            fbp1.SetMovementDirection(direction * fireBallPlayerSpeed);
+
+            // 5. Xoay hỏa cầu nhìn về phía hướng bay (tùy chọn)
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            fbp.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     [SerializeField] private GameObject spellAttack2;
