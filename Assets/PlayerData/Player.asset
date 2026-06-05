@@ -17,7 +17,8 @@ MonoBehaviour:
   currentMp: 200
   maxMp: 200
   damage: 100
-  coins: 0
+  coins: 1
   HpFlask: 0
-  lastCheckPoint: {x: 0, y: 0, z: 0}
+  isActiveHang: 0
+  lastCheckPoint: {x: 30.87, y: 0.05, z: 0}
   lastSceneName: ForestVip

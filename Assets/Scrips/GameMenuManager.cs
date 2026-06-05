@@ -127,12 +127,13 @@ public class GameMenuManager : MonoBehaviour
         pauseMenu.SetActive(false);
         deathMenu.SetActive(false);
         AudioManager.Instance.StopStartGameClip();
-        
-        
+        Player.isContinuing = true;
+
         Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         if (player != null)
         {
             player.StartCoroutine(player.RespawnRoutine());
         }
+        
     }
 }

@@ -12,6 +12,7 @@ public class PlayerData : ScriptableObject
     public float damage;
     public int coins ;
     public int HpFlask ;
+    public bool isActiveHang;
 
     [Header("Save Point")]
     public Vector3 lastCheckPoint; // Tọa độ điểm Save cuối cùng
@@ -25,7 +26,7 @@ public class PlayerData : ScriptableObject
         damage = 100f;
         coins = 0;
         HpFlask = 0;
-
+        isActiveHang = false;
         
 
         lastCheckPoint = new Vector3(0, 0, 0);

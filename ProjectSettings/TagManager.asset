@@ -7,6 +7,9 @@ TagManager:
   - Ledge
   - Enemy
   - Trap
+  - Ground
+  - FireBreath
+  - Hanghand
   layers:
   - Default
   - TransparentFX
@@ -61,6 +64,9 @@ TagManager:
     locked: 0
   - name: BeforeBackGround
     uniqueID: 3338120523
+    locked: 0
+  - name: FireBreath
+    uniqueID: 1412456777
     locked: 0
   - name: ForeGround
     uniqueID: 3729115677

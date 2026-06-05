@@ -37,39 +37,52 @@ public class Player : MonoBehaviour
     [SerializeField] public float maxMp;
     void Start()
     {
-        // Nếu đang trong quá trình Continue thì KHÔNG chạy logic khởi tạo mặc định này
+       
+            // BỔ SUNG: Nếu đang bấm nút Tiếp tục game thì thoát ngay, KHÔNG reset dữ liệu nữa!
+            if (isContinuing)
+            {
+                // Cập nhật lại thanh UI Máu/Mana theo đúng dữ liệu JSON vừa load
+                PlayerUI.Instance.UpdateHp(pData.currentHp, pData.maxHp);
+                PlayerUI.Instance.UpdateMp(pData.currentMp, pData.maxMp);
+                return;
+            }
+
+            // Logic khởi tạo mặc định chỉ dành cho NEW GAME (Chơi mới hoàn toàn)
+            pData.currentHp = pData.maxHp;
+            maxHp = pData.maxHp;
+            PlayerUI.Instance.UpdateHp(pData.currentHp, pData.maxHp);
+            pData.currentMp = pData.maxMp;
+            maxMp = pData.maxMp;
+            PlayerUI.Instance.UpdateMp(pData.currentMp, pData.maxMp);
         
-        // Logic khởi tạo cho New Game
-        pData.currentHp = pData.maxHp;
-        maxHp = pData.maxHp;
-       PlayerUI.Instance.UpdateHp(pData.currentHp, pData.maxHp);
-        pData.currentMp = pData.maxMp;
-        maxMp = pData.maxMp;
-        PlayerUI.Instance.UpdateMp(pData.currentMp, pData.maxMp);
-        
+
     }
 
-    [SerializeField] private Vector2 wallJumpForce = new Vector2(10f, 18f); // X là đẩy ra, Y là đẩy lên
+    [SerializeField] private Vector2 wallJumpForce = new Vector2(10f, 18f); 
     void Update()
     {
-        
-        Hang();
-
-        // Nếu đang bám tường, logic Nhảy sẽ khác một chút (Wall Jump)
-        if (isHang && !isGrounded)
+       
+        if(pData.isActiveHang)
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                // Nhảy bật ra khỏi tường
-                float jumpDirection = transform.localScale.x > 0 ? -1 : 1;
-                rb.linearVelocity = new Vector2(jumpDirection * wallJumpForce.x, wallJumpForce.y);
 
-                // Lật mặt ngay lập tức để nhìn về hướng nhảy
-                transform.localScale = new Vector3(jumpDirection, 1, 1);
+            Hang();
+
+            // Nếu đang bám tường, logic Nhảy sẽ khác một chút (Wall Jump)
+            if (isHang && !isGrounded)
+            {
+                if (Input.GetButtonDown("Jump"))
+                {
+                    // Nhảy bật ra khỏi tường
+                    float jumpDirection = transform.localScale.x > 0 ? -1 : 1;
+                    rb.linearVelocity = new Vector2(jumpDirection * wallJumpForce.x, wallJumpForce.y);
+
+                    // Lật mặt ngay lập tức để nhìn về hướng nhảy
+                    transform.localScale = new Vector3(jumpDirection, 1, 1);
+                }
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && !isHang && isGrounded)
+        if (Input.GetButtonDown("Attack") && !isHang && isGrounded)
         {
             if(Time.timeScale == 0f)
             {
@@ -78,16 +91,17 @@ public class Player : MonoBehaviour
             animator.SetTrigger("BaseAttack");
             AudioManager.Instance.PlayBaseAttackClip();
         }
-        if (!isGrounded && Input.GetMouseButtonDown(0))
+        if (!isGrounded && Input.GetButtonDown("Attack"))
         {
             animator.SetTrigger("isJumpAttack");
+            ///AudioManager.Instance.PlayBaseAttackClip();
         }
         if (Input.GetMouseButtonDown(1) && !isHang)
         {
             Spell1();
             
         }
-        if (Input.GetKeyDown(KeyCode.F) && !isHang && isGrounded)
+        if (Input.GetButtonDown("Spell2") && !isHang && isGrounded)
         {
             Spell2();
         }
@@ -108,7 +122,7 @@ public class Player : MonoBehaviour
         
     }
 
-    [SerializeField] private float moveSpeedInGround = 7f;
+    [SerializeField] public float moveSpeedInGround = 7f;
     [SerializeField] private float moveSpeedInAir = 4f;
     private bool isGrounded;
     void Move()
@@ -146,12 +160,12 @@ public class Player : MonoBehaviour
     }
 
 
-    [SerializeField] private float jumpForce = 15f;
+    [SerializeField] public float jumpForce = 15f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
@@ -211,16 +225,16 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
 {
-    // 1. Kiểm tra xem điểm wallCheck đã được gán vào Inspector chưa
+   
     if (groundCheck == null) return;
 
-    // 2. Chọn màu cho vòng tròn (Ví dụ: Màu đỏ khi chạm tường, màu xanh khi không chạm)
+    
     if (isGrounded) 
         Gizmos.color = Color.red;
     else 
         Gizmos.color = Color.green;
 
-    // 3. Vẽ vòng tròn dây (Wire Sphere) tại vị trí wallCheck với bán kính 0.6f
+    
     Gizmos.DrawWireSphere(groundCheck.position, 0.3f);
 }
 
@@ -239,6 +253,8 @@ public class Player : MonoBehaviour
             Golux golux = layer.GetComponent<Golux>();
             FlyEnemy flyEnemy = layer.GetComponent<FlyEnemy>();
             Dragon dragon = layer.GetComponent<Dragon>();
+            MechaGolem mechaGolem = layer.GetComponent<MechaGolem>();
+            
             if (enemy != null)
             {
                 enemy.TakeDamage(pData.damage);
@@ -263,6 +279,11 @@ public class Player : MonoBehaviour
             {
                 dragon.TakeDamage(pData.damage);
             }
+            if (mechaGolem != null)
+            {
+                mechaGolem.TakeDamae(pData.damage);
+            }
+            
         }
     }
     private void OnDrawGizmosSelected()
@@ -285,6 +306,7 @@ public class Player : MonoBehaviour
             pData.currentMp -= 20f;
             pData.currentMp = Mathf.Max(0, pData.currentMp);
             PlayerUI.Instance.UpdateMp(pData.currentMp, maxMp);
+            ResourceManager.instance.UpdateUI();
 
         }
         else
@@ -306,6 +328,7 @@ public class Player : MonoBehaviour
             pData.currentMp -= 50f;
             pData.currentMp = Mathf.Max(0, pData.currentMp);
             PlayerUI.Instance.UpdateMp(pData.currentMp, maxMp);
+            ResourceManager.instance.UpdateUI();
         }
         else { return; }
     }
@@ -332,6 +355,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isDie",false);
         }
+        ResourceManager.instance.UpdateUI();
     }
 
 
@@ -365,6 +389,7 @@ public class Player : MonoBehaviour
 
         // Đảm bảo thời gian chạy lại (phòng trường hợp bị Scale = 0 từ Menu)
         Time.timeScale = 1f;
+        isContinuing = false;
     }
 
     private void Die()
@@ -452,6 +477,14 @@ public class Player : MonoBehaviour
     {
         pData.maxMp += value;
         maxMp = pData.maxMp;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Hanghand"))
+        {
+            pData.isActiveHang = true;
+        }
     }
 
 }

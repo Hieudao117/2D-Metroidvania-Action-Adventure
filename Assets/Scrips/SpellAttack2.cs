@@ -22,6 +22,8 @@ public class SpellAttack2 : MonoBehaviour
         Golux golux = collision.GetComponent<Golux>();
         FlyEnemy flyEnemy = collision.GetComponent<FlyEnemy>();
         Dragon dragon = collision.GetComponent<Dragon>();
+        MechaGolem mechaGolem = collision.GetComponent<MechaGolem>();
+        KnightEnemy knightEnemy = collision.GetComponent<KnightEnemy>();
         if (collision.CompareTag("Enemy"))
 
         {
@@ -49,6 +51,14 @@ public class SpellAttack2 : MonoBehaviour
             if(dragon != null)
             {
                 dragon.TakeDamage(damage);
+            }
+            if(mechaGolem != null)
+            {
+                mechaGolem.TakeDamae(damage);
+            }
+            if(knightEnemy != null)
+            {
+                knightEnemy.TakeDamage(damage);
             }
             
         }

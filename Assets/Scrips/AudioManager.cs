@@ -19,6 +19,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip DragonSpecialAttack;
     [SerializeField] private AudioSource audioSourceTypingKeyBoard;
     [SerializeField] private AudioClip typingKeyBoardClip;
+    [SerializeField] private AudioClip shotArrowClip;
+    [SerializeField] private AudioSource audioSourceDragonBreath;
+    [SerializeField] private AudioClip dragonBreathClip;
+    [SerializeField] private AudioClip explosionClip;
 
     public static AudioManager Instance;
     private void Awake()
@@ -83,6 +87,10 @@ public class AudioManager : MonoBehaviour
     {
         audioSourceShotClip.PlayOneShot(EnemyAttackClip);
     }
+    public void PlayExplosionClip()
+    {
+        audioSourceShotClip.PlayOneShot(explosionClip);
+    }
     public void PlayDragonBaseAttackClip()
     {
         audioSourceShotClip.PlayOneShot(DragonBaseAttack);
@@ -90,6 +98,10 @@ public class AudioManager : MonoBehaviour
     public void PlayDragonSpecialAttackClip()
     {
         audioSourceShotClip.PlayOneShot(DragonSpecialAttack);
+    }
+    public void playShotArrowClip()
+    {
+        audioSourceShotClip.PlayOneShot(shotArrowClip);
     }
     public void PlayTypingKeyBoardClip()
     {
@@ -99,6 +111,16 @@ public class AudioManager : MonoBehaviour
     public void StopTypingKeyBoardClip()
     {
         audioSourceTypingKeyBoard.Stop();
+    }
+
+    public void PlayDragonBreathClip()
+    {
+        audioSourceDragonBreath.clip = dragonBreathClip;
+        audioSourceDragonBreath.Play();
+    }
+    public void StopPlayDragonBreathClip()
+    {
+        audioSourceDragonBreath.Stop();
     }
     public void StopOneShot()
     {

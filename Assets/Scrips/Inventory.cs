@@ -33,11 +33,7 @@ public class Inventory : MonoBehaviour
             ToggleInventory();
         }
 
-        // Test nhanh nút Save bằng phím K (Tùy chọn)
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SaveInventory();
-        }
+        
     }
 
     public void ToggleInventory()
@@ -88,7 +84,7 @@ public class Inventory : MonoBehaviour
             string trimmedName = itemName.Trim();
             if (string.IsNullOrEmpty(trimmedName)) continue;
 
-            // ĐƯỜNG DẪN CHÍNH XÁC THEO HÌNH BẠN GỬI:
+            
             AmuletData data = Resources.Load<AmuletData>("AmuletsData/" + trimmedName);
 
             if (data != null)

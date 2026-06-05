@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3c201b6f4abc74286c412bcdae1f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  cooldown: 5
+  cooldown: 2
   isPlayerInTrigger: 0
   maxHp: 200
   arrow: {fileID: 4063265363945825005, guid: e7b6546ae283523439688c03e36ddb7d, type: 3}

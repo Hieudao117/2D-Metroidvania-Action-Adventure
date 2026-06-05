@@ -8,6 +8,10 @@ public class ResourceManager : MonoBehaviour
     [Header("UI References")]
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI potionText;
+    public TextMeshProUGUI currenthpText;
+    public TextMeshProUGUI maxHpText;
+    public TextMeshProUGUI currentMpText;
+    public TextMeshProUGUI maxMpText;
 
     public PlayerData playerData;
     
@@ -55,32 +59,49 @@ public class ResourceManager : MonoBehaviour
             
         }
     }
-    public void UpgradeBaseAttack()
+
+    
+    public int UpgradeBaseAttack()
     {
-        if(playerData.coins >= 10)
+        if(playerData.coins >= 5)
         {
-            playerData.coins -= 10;
+            playerData.coins -= 5;
             FindAnyObjectByType<Player>().UpgradeBaseAttack(50f);
             UpdateUI();
+            return 1;
+        }
+        else
+        {
+            return 0;
         }
     }
 
-    public void UpgradeHp()
+    public int UpgradeHp()
     {
-        if(playerData.coins >= 20)
+        if(playerData.coins >= 2)
         {
-            playerData.coins -= 20;
+            playerData.coins -= 2;
             FindAnyObjectByType<Player>().UpgradeHp(50f);
             UpdateUI();
+            return 1;
+        }
+        else
+        {
+            return 0;
         }
     }
-    public void UpgradeMp()
+    public int UpgradeMp()
     {
-        if (playerData.coins >= 20)
+        if (playerData.coins >= 5)
         {
-            playerData.coins -= 20;
+            playerData.coins -= 5;
             FindAnyObjectByType<Player>().UpgradeMp(50f);
             UpdateUI();
+            return 1;
+        }
+        else
+        {
+            return 0;
         }
     }
 
@@ -88,5 +109,16 @@ public class ResourceManager : MonoBehaviour
     {
         coinText.text = "x " + playerData.coins.ToString();
         potionText.text = "x " + playerData.HpFlask.ToString();
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObj != null)
+        {
+            Player player = playerObj.GetComponent<Player>();
+            currenthpText.text = playerData.currentHp.ToString();
+            maxHpText.text = player.maxHp.ToString();
+            currentMpText.text = playerData.currentMp.ToString();
+            maxMpText.text = player.maxMp.ToString();
+        }
     }
 }

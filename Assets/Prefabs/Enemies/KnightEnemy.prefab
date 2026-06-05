@@ -127,9 +127,9 @@ GameObject:
   - component: {fileID: 4284284646879681285}
   - component: {fileID: 8896334405607809001}
   - component: {fileID: 5480509398331023541}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KnightEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

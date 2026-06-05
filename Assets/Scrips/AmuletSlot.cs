@@ -51,8 +51,9 @@ public class AmuletSlot : MonoBehaviour, IDropHandler
             player.maxMp += data.bonusMp * sign;
             player.pData.currentMp += data.bonusMp * sign;
             PlayerUI.Instance.UpdateMp(player.pData.currentMp,player.maxMp);
+            ResourceManager.instance.UpdateUI();
 
-            
+
             Debug.Log($"[Amulet] {(isAdding ? "Lắp" : "Tháo")} {data.itemName}. MaxHP hiện tại: {player.pData.maxHp}");
         }
         else

@@ -28,6 +28,7 @@ public class Huntress : MonoBehaviour
             {
                 FLipWhenAttack(player.transform.position);
                 animator.SetTrigger("Attack");
+                AudioManager.Instance.playShotArrowClip();
                 lastShootTime = Time.time;
             }
             

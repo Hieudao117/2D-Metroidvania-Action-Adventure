@@ -30,16 +30,48 @@ public class Npc : MonoBehaviour
         }
     }
 
+    [SerializeField] private GameObject noticeFalse;
+    [SerializeField] private GameObject noticeSuccess;
     public void CallUpgradeHp()
     {
-        ResourceManager.instance.UpgradeHp();
+        int result = ResourceManager.instance.UpgradeHp();
+        if(result == 0)
+        {
+            noticeFalse.SetActive(true) ;
+        }
+        if(result == 1)
+        {
+            noticeSuccess.SetActive(true) ;
+        }
+    }
+
+    public void TurnoffNotice()
+    {
+        noticeFalse.SetActive(false) ;
+        noticeSuccess.SetActive(false) ;
     }
     public void CallUpgradeMp()
     {
-         ResourceManager.instance.UpgradeMp();
+         int result =ResourceManager.instance.UpgradeMp();
+        if (result == 0)
+        {
+            noticeFalse.SetActive(true);
+        }
+        if (result == 1)
+        {
+            noticeSuccess.SetActive(true);
+        }
     }
     public void CallUpgradeBaseAttack()
     {
-        ResourceManager .instance.UpgradeBaseAttack();
+       int result = ResourceManager .instance.UpgradeBaseAttack();
+        if (result == 0)
+        {
+            noticeFalse.SetActive(true);
+        }
+        if (result == 1)
+        {
+            noticeSuccess.SetActive(true);
+        }
     }
 }

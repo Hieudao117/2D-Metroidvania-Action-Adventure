@@ -16,6 +16,7 @@ public class SavePoint : MonoBehaviour
             // 2. Hồi máu cho Player
             pData.currentHp = player.maxHp;
             pData.currentMp = player.maxMp;
+            ResourceManager.instance.UpdateUI();
             if (PlayerUI.Instance != null)
             {
                 PlayerUI.Instance.UpdateHp(pData.currentHp, player.maxHp);

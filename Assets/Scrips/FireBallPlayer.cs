@@ -34,6 +34,8 @@ public class FireBallPlayer : MonoBehaviour
         Golux golux = collision.GetComponent<Golux>();
         FlyEnemy flyEnemy = collision.GetComponent<FlyEnemy>();
         Dragon dragon = collision.GetComponent<Dragon>();
+        MechaGolem mechaGolem = collision.GetComponent<MechaGolem>();
+        
         if (collision.CompareTag("Enemy"))
             
         {
@@ -64,6 +66,11 @@ public class FireBallPlayer : MonoBehaviour
             {
                 dragon.TakeDamage(damage);
             }
+            if (mechaGolem != null)
+            {
+                mechaGolem.TakeDamae(damage);
+            }
+
             Destroy(gameObject, 1f);
         }
     }
